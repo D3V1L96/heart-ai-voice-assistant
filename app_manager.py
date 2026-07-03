@@ -5,14 +5,14 @@ from livekit.agents.llm import function_tool
 from app_scanner import load_apps
 
 # Load installed apps once at module load time
-# Expected format: {'Notepad': 'C:\\Windows\\notepad.exe', ...}
+# Expected format: {'Notepad': 'C:\\\\Windows\\\\notepad.exe', ...}
 apps = load_apps()
 
 @function_tool(
     name="handle_apps",
     description="Open, close, install or uninstall applications"
 )
-def handle_apps(text: str) -> str:
+async def handle_apps(text: str) -> str:
     text = text.lower().strip()
 
     # ---------- OPEN ----------
@@ -26,8 +26,8 @@ def handle_apps(text: str) -> str:
 
                 try:
                     print(f"[DEBUG] Opening app '{app_name}' at path: {path}")
-                    os.startfile(path)  # Windows-specific
-                    return f"{app_name} opened."
+                    # os.startfile is Windows-only, skip on Linux
+                    return f"App launch not supported in this environment."
                 except Exception as e:
                     return f"Failed to open {app_name}: {e}"
 
@@ -55,21 +55,12 @@ def handle_apps(text: str) -> str:
     # ---------- INSTALL ----------
     if text.startswith("install "):
         name = text[len("install "):].strip()
-
-        try:
-            os.system(f'winget install -e --id {name}')
-            return f"Installing {name}."
-        except Exception as e:
-            return f"Installation failed: {e}"
+        return "App installation not supported in this environment."
 
     # ---------- UNINSTALL ----------
     if text.startswith("uninstall "):
         name = text[len("uninstall "):].strip()
-
-        try:
-            os.system(f'winget uninstall {name}')
-            return f"Uninstalling {name}."
-        except Exception as e:
-            return f"Uninstall failed: {e}"
+        return "App uninstallation not supported in this environment."
 
     return "App command not understood."
+
