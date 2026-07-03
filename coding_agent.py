@@ -14,7 +14,7 @@ from ide_manager import (
 # ────────────────────────────────────────────────
 # Hardcoded OpenRouter API key (no .env needed)
 # ────────────────────────────────────────────────
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "use your key"
 
 # ────────────────────────────────────────────────
 # Save folder on Desktop (safe, no permission issues)
