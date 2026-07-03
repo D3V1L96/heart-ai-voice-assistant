@@ -11,8 +11,8 @@ from pathlib import Path
 from datetime import datetime
 
 # ========================= CONFIG =========================
-SERPAPI_KEY = "1f693f5d4665b1344fad47eb010d0222f1ef0e94241fb63ce4a84b1b685b3431"
-PEXELS_API_KEY = "B4Hp6WIVYXllRgSXBnTSbLvuUYEF8bJPBXfIvoqhV0lEagk8DT8e2ymJ"
+SERPAPI_KEY = " get yours"
+PEXELS_API_KEY = "get yours"
 
 SAVE_FOLDER = r"C:\HeartPresentations"
 os.makedirs(SAVE_FOLDER, exist_ok=True)
